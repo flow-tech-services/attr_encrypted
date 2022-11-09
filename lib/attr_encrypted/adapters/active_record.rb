@@ -4,8 +4,6 @@ if defined?(ActiveRecord::Base)
   module AttrEncrypted
     module Adapters
       module ActiveRecord
-        RAILS_VERSION = Gem::Version.new(::ActiveRecord::VERSION::STRING).freeze
-
         def self.extended(base) # :nodoc:
           base.class_eval do
 
@@ -34,7 +32,7 @@ if defined?(ActiveRecord::Base)
             end
             private :perform_attribute_assignment
 
-            if Gem::Requirement.new('> 3.1').satisfied_by?(RAILS_VERSION)
+            if true
               alias_method :assign_attributes_without_attr_encrypted, :assign_attributes
               def assign_attributes(*args)
                 perform_attribute_assignment :assign_attributes_without_attr_encrypted, *args
@@ -76,7 +74,7 @@ if defined?(ActiveRecord::Base)
               # attributes are handled, @attributes[attr].value is nil which
               # breaks attribute_was. Setting it here returns us to the expected
               # behavior.
-              if Gem::Requirement.new('>= 5.2').satisfied_by?(RAILS_VERSION)
+              if true
                 # This is needed support attribute_was before a record has
                 # been saved
                 set_attribute_was(attr, __send__(attr)) if value != __send__(attr)

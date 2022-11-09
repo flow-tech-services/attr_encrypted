@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 
-RAILS_VERSION = Gem::Version.new(::ActiveRecord::VERSION::STRING).freeze
+RAILS_VERSION = '5.2.8.1'.freeze
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
 def create_tables
